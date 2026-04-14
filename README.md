@@ -204,6 +204,16 @@ Since this endpoint is not able to get any data from you, a service can be decor
 Decorate this service : `flux_se.sylius_payum_stripe.api.payum.after_url.stripe_checkout_session` to generate your own dedicated url.
 You will have access to the Sylius `Payment` to decide what is the url/route and the parameters of it.
 
+## Authors
+
+This plugin was originally created by [Harman Professional, Inc.](https://github.com/flux-se)
+
+Kudos to [Prometee](https://github.com/Prometee) and [all contributors](../../contributors) 🙏
+
+## License
+
+This plugin is released under the [MIT License](LICENSE).
+
 [docs-assets-create-payment-method]: docs/assets/create-payment-method.png
 [docs-assets-gateway-configuration]: docs/assets/gateway-configuration.png
 [docs-assets-gateway-configuration-authorize]: docs/assets/gateway-configuration-authorize.png
