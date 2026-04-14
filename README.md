@@ -206,7 +206,11 @@ You will have access to the Sylius `Payment` to decide what is the url/route and
 
 ## Authors
 
-This plugin was originally created by [Harman Professional, Inc.](https://github.com/flux-se)
+This plugin was originally created by:
+
+<a href="https://harman.com" target="_blank"><img src="docs/assets/harman-logo.svg" alt="Harman Professional, Inc." height="40"></a>
+&nbsp;&nbsp;
+<a href="https://flux.audio" target="_blank"><img src="docs/assets/flux-logo.svg" alt="Flux:: Sound and Picture Development" height="40"></a>
 
 Kudos to [Prometee](https://github.com/Prometee) and [all contributors](../../contributors) 🙏
 
