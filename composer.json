@@ -67,6 +67,12 @@
         ]
     },
     "config": {
+        "audit": {
+            "ignore": [
+                "PKSA-gs8r-6kz6-pp56",
+                "PKSA-gnn4-pxdg-q76m"
+            ]
+        },
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": false,
             "phpstan/extension-installer": false,
