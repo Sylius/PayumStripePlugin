@@ -192,9 +192,10 @@ jobs:
 
             -
                 name: Fix build with Symfony ^5.4
-                if: matrix.symfony == '^5.4'
+                if: matrix.symfony == '^5.4' && matrix.sylius != '~1.14.0'
                 run: |
-                    composer require --dev "doctrine/annotations:^1.14" --no-update --no-scripts --no-interaction
+                    composer require "doctrine/annotations:^1.14" --no-update --no-scripts --no-interaction
+
             -
                 name: Install PHP dependencies
                 run: composer install --no-interaction
