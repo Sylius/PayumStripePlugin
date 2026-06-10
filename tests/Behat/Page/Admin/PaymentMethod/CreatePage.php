@@ -17,6 +17,7 @@ final class CreatePage extends BaseCreatePage implements CreatePageInterface
             'webhook_secret_keys_list_element' => '#sylius_payment_method_gatewayConfig_config_webhook_secret_keys_%index%',
             'use_authorize_info' => '#sylius_payment_method_gatewayConfig_config_use_authorize_info',
             'use_authorize' => '#sylius_payment_method_gatewayConfig_config_use_authorize',
+            'use_authorize_label' => 'label[for="sylius_payment_method_gatewayConfig_config_use_authorize"]',
         ]);
     }
 
@@ -50,11 +51,11 @@ final class CreatePage extends BaseCreatePage implements CreatePageInterface
      */
     public function setStripeIsAuthorized(bool $isAuthorized): void
     {
-        if ($isAuthorized) {
-            // ->check() is not working anymore because the checkbox is not visible
-            $this->getElement('use_authorize')->click();
-        } else {
-            $this->getElement('use_authorize')->uncheck();
+        $checkbox = $this->getElement('use_authorize');
+        if ($checkbox->isChecked() !== $isAuthorized) {
+            // The checkbox input is visually hidden (Semantic UI), so clicking it directly is
+            // intercepted by its label; click the label instead to toggle the value.
+            $this->getElement('use_authorize_label')->click();
         }
 
         sleep(1);
