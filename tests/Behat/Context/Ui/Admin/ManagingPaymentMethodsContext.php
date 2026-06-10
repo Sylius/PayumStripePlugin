@@ -20,7 +20,7 @@ class ManagingPaymentMethodsContext implements Context
     }
 
     /**
-     * @Given /^I want to create a new Stripe Checkout Session payment method$/
+     * @When /^I want to create a new Stripe Checkout Session payment method$/
      *
      * @throws UnexpectedPageException
      */
@@ -30,7 +30,7 @@ class ManagingPaymentMethodsContext implements Context
     }
 
     /**
-     * @Given /^I want to create a new Stripe JS payment method$/
+     * @When /^I want to create a new Stripe JS payment method$/
      *
      * @throws UnexpectedPageException
      */
@@ -78,13 +78,5 @@ class ManagingPaymentMethodsContext implements Context
     public function iShouldSeeAWarningMessageUnderTheUseAuthorizeField(): void
     {
         Assert::true($this->createPage->isUseAuthorizeWarningMessageDisplayed());
-    }
-
-    /**
-     * @Given /^I shouldn't see a warning message under the use authorize field$/
-     */
-    public function iShouldntSeeAWarningMessageUnderTheUseAuthorizeField(): void
-    {
-        Assert::false($this->createPage->isUseAuthorizeWarningMessageDisplayed());
     }
 }

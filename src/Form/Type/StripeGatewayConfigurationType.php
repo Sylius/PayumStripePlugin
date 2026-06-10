@@ -7,6 +7,7 @@ namespace FluxSE\SyliusPayumStripePlugin\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -25,6 +26,10 @@ final class StripeGatewayConfigurationType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('publishable_key_info', HiddenType::class, [
+                'mapped' => false,
+                'required' => false,
+            ])
             ->add('secret_key', TextType::class, [
                 'label' => 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.secret_key',
                 'constraints' => [
@@ -34,8 +39,16 @@ final class StripeGatewayConfigurationType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('secret_key_info', HiddenType::class, [
+                'mapped' => false,
+                'required' => false,
+            ])
             ->add('use_authorize', CheckboxType::class, [
                 'label' => 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.use_authorize',
+            ])
+            ->add('use_authorize_info', HiddenType::class, [
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('webhook_secret_keys', CollectionType::class, [
                 'allow_add' => true,
@@ -48,6 +61,10 @@ final class StripeGatewayConfigurationType extends AbstractType
                         'groups' => 'sylius',
                     ]),
                 ],
+            ])
+            ->add('webhook_secret_keys_info', HiddenType::class, [
+                'mapped' => false,
+                'required' => false,
             ])
         ;
     }
