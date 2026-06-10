@@ -71,7 +71,8 @@
             "ignore": [
                 "PKSA-gs8r-6kz6-pp56",
                 "PKSA-gnn4-pxdg-q76m",
-                "PKSA-4g5g-4rkv-myqs"
+                "PKSA-4g5g-4rkv-myqs",
+                "PKSA-2rbx-bjdx-4d4d"
             ]
         },
         "allow-plugins": {
