@@ -1,3 +1,20 @@
+# UPGRADE FROM `v2.0.17` to `v2.0.18`
+
+This form theme template has been removed :
+
+- `@FluxSESyliusPayumStripePlugin/Admin/PaymentMethod/Form/useAuthorize.html.twig`
+  use `@FluxSESyliusPayumStripePlugin/Admin/PaymentMethod/Form/gatewayConfiguration.html.twig` instead.
+
+The Stripe gateway configuration admin form now renders information boxes next to the fields
+(recommended Restricted API key, use authorize, webhook secret keys). If you overrode
+`useAuthorize.html.twig` to customize the "use authorize" message, move your customization to
+the new template. The "use authorize" info box is now always visible (previously it was shown
+only when the checkbox was checked).
+
+`StripeGatewayConfigurationType` now adds extra unmapped fields (`publishable_key_info`,
+`secret_key_info`, `use_authorize_info`, `webhook_secret_keys_info`). They carry no data and
+exist only to lay out the information boxes above, the persisted gateway configuration is unchanged.
+
 # UPGRADE FROM `v2.0.10` to `v2.0.11`
 
 This class has been deprecated :

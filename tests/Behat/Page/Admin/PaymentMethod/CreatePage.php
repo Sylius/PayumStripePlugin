@@ -14,6 +14,7 @@ final class CreatePage extends BaseCreatePage implements CreatePageInterface
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
+            'secret_key' => '#sylius_payment_method_gatewayConfig_config_secret_key',
             'webhook_secret_keys_list_element' => '#sylius_payment_method_gatewayConfig_config_webhook_secret_keys_%index%',
             'use_authorize_info' => '#sylius_payment_method_gatewayConfig_config_use_authorize_info',
             'use_authorize' => '#sylius_payment_method_gatewayConfig_config_use_authorize',
@@ -23,7 +24,7 @@ final class CreatePage extends BaseCreatePage implements CreatePageInterface
 
     public function setStripeSecretKey(string $secretKey): void
     {
-        $this->getDocument()->fillField('Secret key', $secretKey);
+        $this->getElement('secret_key')->setValue($secretKey);
     }
 
     public function setStripePublishableKey(string $publishableKey): void

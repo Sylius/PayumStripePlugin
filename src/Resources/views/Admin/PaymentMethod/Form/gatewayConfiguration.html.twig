@@ -1,0 +1,68 @@
+{% block _sylius_payment_method_gatewayConfig_config_publishable_key_info_row %}
+    <div class="field"></div>
+{% endblock %}
+
+{% block _sylius_payment_method_gatewayConfig_config_secret_key_info_row %}
+    <style>
+        .flux-se-payum-stripe-recommended-cell { margin-top: -79px !important; }
+    </style>
+    <div class="field flux-se-payum-stripe-recommended-cell">
+        <div class="ui icon info message">
+            <i class="check circle icon"></i>
+            <div class="content">
+                <div class="header">
+                    {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.info.secret_key_recommended_title'|trans }}
+                </div>
+                <p>{{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.info.secret_key_recommended_body'|trans }}</p>
+                <p>
+                    <a href="https://marketplace.stripe.com/apps/sylius" target="_blank" rel="noopener noreferrer">
+                        {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.view_stripe_app'|trans }}
+                    </a>
+                    {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.or'|trans }}
+                    <a href="https://marketplace.stripe.com/apps/install/link/com.sylius.stripe" target="_blank" rel="noopener noreferrer">
+                        {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.install_stripe_app'|trans }}
+                    </a>
+                </p>
+                <div class="ui divider"></div>
+                <p>{{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.info.secret_key_legacy_body'|trans }}</p>
+                <p>
+                    <a href="https://dashboard.stripe.com/apikeys" target="_blank" rel="noopener noreferrer">
+                        {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.secret_key'|trans }}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _sylius_payment_method_gatewayConfig_config_use_authorize_info_row %}
+    <div class="field">
+        <div class="ui icon info message" id="{{ form.vars.id }}">
+            <i class="info circle icon"></i>
+            <div class="content">
+                <p>{{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.info.use_authorize'|trans }}</p>
+                <p>
+                    <a href="https://stripe.com/docs/payments/capture-later" target="_blank" rel="noopener noreferrer">
+                        {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.use_authorize'|trans }}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _sylius_payment_method_gatewayConfig_config_webhook_secret_keys_info_row %}
+    <div class="field">
+        <div class="ui icon info message">
+            <i class="info circle icon"></i>
+            <div class="content">
+                <p>{{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.info.webhook_secret_key'|trans }}</p>
+                <p>
+                    <a href="https://dashboard.stripe.com/workbench/webhooks/create" target="_blank" rel="noopener noreferrer">
+                        {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.webhook_secret_key'|trans }}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
