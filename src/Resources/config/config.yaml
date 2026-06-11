@@ -1,4 +1,5 @@
 imports:
+  - { resource: 'app/sylius_ui.yaml' }
   - { resource: 'app/twig.yaml' }
   - { resource: 'app/winzou_state_machine.yaml' }
 

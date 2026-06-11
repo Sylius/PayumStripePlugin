@@ -2,6 +2,9 @@ flux_se_sylius_payum_stripe_plugin:
     payum_gateway_factory:
         stripe_checkout_session: Stripe Checkout Session (with SCA support)
         stripe_js: Stripe JS (with SCA support)
+    admin:
+        notification:
+            legacy_secret_key: 'Payment method "%payment_method_name%" uses a legacy secret key (sk_…). Switch to a Restricted API Key from the Sylius Stripe App.'
     form:
         gateway_configuration:
             stripe:
@@ -11,7 +14,7 @@ flux_se_sylius_payum_stripe_plugin:
                 webhook_secret_keys: Webhook secret keys
                 info:
                     secret_key_recommended_title: Recommended - Restricted API Key (rk_…)
-                    secret_key_recommended_body: Generate a Restricted API Key from your Sylius Stripe App Settings Page. The App ships with the minimum scopes the plugin needs.
+                    secret_key_recommended_body: Generate a Restricted API Key from your Sylius Stripe App Settings Page. The App ships with the minimum scopes the plugin needs and will be the only supported option in next version.
                     secret_key_legacy_body: A standard Stripe secret key (sk_…) from the Stripe Dashboard is still accepted in this version.
                     use_authorize: When a payment is authorized, the bank guarantees the amount and holds it on the customer’s card for up to seven days.
                     webhook_secret_key: Create a new webhook endpoint to generate a new webhook secret key on the Stripe dashboard and listen for several events.

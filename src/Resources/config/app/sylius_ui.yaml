@@ -1,0 +1,7 @@
+sylius_ui:
+    events:
+        sylius.admin.layout.topbar_right:
+            blocks:
+                notifications:
+                    template: '@FluxSESyliusPayumStripePlugin/Admin/Layout/_notifications.html.twig'
+                    priority: 30
