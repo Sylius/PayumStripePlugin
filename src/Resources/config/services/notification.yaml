@@ -1,0 +1,23 @@
+services:
+    flux_se.sylius_payum_stripe.stripe.secret_key.legacy_key_detector:
+        class: FluxSE\SyliusPayumStripePlugin\Stripe\SecretKey\LegacyKeyDetector
+
+    FluxSE\SyliusPayumStripePlugin\Stripe\SecretKey\LegacyKeyDetectorInterface:
+        alias: flux_se.sylius_payum_stripe.stripe.secret_key.legacy_key_detector
+
+    flux_se.sylius_payum_stripe.stripe.secret_key.legacy_stripe_payment_methods_provider:
+        class: FluxSE\SyliusPayumStripePlugin\Stripe\SecretKey\LegacyStripePaymentMethodsProvider
+        arguments:
+            - '@sylius.repository.payment_method'
+            - '@flux_se.sylius_payum_stripe.stripe.secret_key.legacy_key_detector'
+            - [ 'stripe_checkout_session', 'stripe_js' ]
+
+    FluxSE\SyliusPayumStripePlugin\Stripe\SecretKey\LegacyStripePaymentMethodsProviderInterface:
+        alias: flux_se.sylius_payum_stripe.stripe.secret_key.legacy_stripe_payment_methods_provider
+
+    flux_se.sylius_payum_stripe.twig.extension.legacy_stripe_key:
+        class: FluxSE\SyliusPayumStripePlugin\Twig\Extension\LegacyStripeKeyExtension
+        arguments:
+            - '@flux_se.sylius_payum_stripe.stripe.secret_key.legacy_stripe_payment_methods_provider'
+        tags:
+            - { name: twig.extension }

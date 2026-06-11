@@ -1,0 +1,84 @@
+{#
+    Admin top-bar notification bell.
+
+    Overrides the "notifications" block of the "sylius.admin.layout.topbar_right" event
+    (see src/Resources/config/app/sylius_ui.yaml) so that the warning about Stripe payment
+    methods still using a legacy secret key (sk_…) is listed inside the SAME bell, below
+    Sylius' version notification, instead of rendering a second bell next to it.
+
+    It renders Sylius' own notification widget unchanged, then relocates the legacy-key
+    rows into that bell's dropdown menu. If version notifications are disabled (the widget
+    renders nothing), our own bell is shown instead.
+#}
+{% set legacy_payment_methods = flux_se_sylius_payum_stripe_legacy_payment_methods() %}
+
+{{ sylius_render_notifications_widget() }}
+
+{% if legacy_payment_methods is not empty %}
+    <style>
+        .flux-se-stripe-notification-bell { position: relative; }
+        .flux-se-stripe-notification-bell > .flux-se-stripe-notification-badge {
+            position: absolute;
+            top: 9px;
+            right: 4px;
+            margin: 0 !important;
+            z-index: 11;
+        }
+        .flux-se-stripe-notification-bell.flux-se-stripe-has-notification i.bell.icon {
+            color: #fbbd08 !important;
+            font-family: 'Icons' !important;
+        }
+        .flux-se-stripe-notification-bell .menu .flux-se-stripe-notification-item {
+            width: 320px;
+            white-space: normal !important;
+        }
+    </style>
+
+    <div class="ui floated simple dropdown icon item flux-se-stripe-notification-bell flux-se-stripe-has-notification"
+         id="flux-se-stripe-legacy-secret-key-notification" style="display: none;">
+        <i class="outline bell icon"></i>
+        <div class="ui red circular mini label flux-se-stripe-notification-badge">{{ legacy_payment_methods|length }}</div>
+        <div class="menu">
+            {% for payment_method in legacy_payment_methods %}
+                <a class="item flux-se-stripe-notification-item" href="{{ path('sylius_admin_payment_method_update', { id: payment_method.id }) }}">
+                    {{ 'flux_se_sylius_payum_stripe_plugin.admin.notification.legacy_secret_key'|trans({ '%payment_method_name%': payment_method.name }) }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        (function () {
+            var separate = document.getElementById('flux-se-stripe-legacy-secret-key-notification');
+            if (separate === null) {
+                return;
+            }
+
+            var versionBell = document.getElementById('sylius-version-notification');
+            var versionMenu = versionBell === null ? null : versionBell.querySelector('.menu');
+            if (versionMenu === null) {
+                separate.style.display = '';
+
+                return;
+            }
+
+            versionBell.classList.add('flux-se-stripe-notification-bell', 'flux-se-stripe-has-notification');
+
+            var noNotifications = versionMenu.querySelector('#no-notifications');
+            if (noNotifications !== null) {
+                noNotifications.remove();
+            }
+
+            var items = separate.querySelectorAll('.menu .item');
+            for (var i = 0; i < items.length; i++) {
+                versionMenu.appendChild(items[i]);
+            }
+
+            var badge = separate.querySelector('.flux-se-stripe-notification-badge');
+            if (badge !== null) {
+                versionBell.insertBefore(badge, versionMenu);
+            }
+
+            separate.parentNode.removeChild(separate);
+        })();
+    </script>
+{% endif %}

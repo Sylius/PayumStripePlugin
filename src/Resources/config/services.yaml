@@ -1,6 +1,7 @@
 imports:
     - { resource: 'services/command_handlers.yaml' }
     - { resource: 'services/factory.yaml' }
+    - { resource: 'services/notification.yaml' }
     - { resource: 'services/payum.yaml' }
     - { resource: 'services/state_machine.yaml' }
 
