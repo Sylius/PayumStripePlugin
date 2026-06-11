@@ -8,12 +8,3 @@ services:
             -   name: payum.action
                 factory: stripe_js
                 alias: flux_se.sylius_payum_stripe.convert_payment
-
-    flux_se.sylius_payum_stripe.action.stripe_js.capture:
-        public: true
-        class: FluxSE\SyliusPayumStripePlugin\Action\StripeJs\CaptureAction
-        tags:
-            -   name: payum.action
-                factory: stripe_js
-                alias: flux_se.sylius_payum_stripe.capture
-                prepend: true
