@@ -1,3 +1,10 @@
+# UPGRADE FROM `v2.0.19` to `v2.1.0`
+
+The minimum supported Sylius version has been raised: this plugin now requires `sylius/sylius: ^1.12`.
+
+Sylius `1.9`, `1.10` and `1.11` are no longer supported. Upgrade your application to Sylius `~1.12.0`, `~1.13.0`
+or `~1.14.0` before updating this plugin.
+
 # UPGRADE FROM `v2.0.17` to `v2.0.18`
 
 This form theme template has been removed :
