@@ -7,6 +7,7 @@ namespace FluxSE\SyliusPayumStripePlugin;
 use FluxSE\SyliusPayumStripePlugin\DependencyInjection\Compiler\PayumGatewayConfigOverride;
 use FluxSE\SyliusPayumStripePlugin\DependencyInjection\Compiler\PayumStoragePaymentAliaser;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
+use Sylius\Telemetry\TelemetryCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -26,6 +27,8 @@ class FluxSESyliusPayumStripePlugin extends Bundle
         ]));
 
         $container->addCompilerPass(new PayumStoragePaymentAliaser());
+
+        $container->addCompilerPass(new TelemetryCompilerPass());
 
         parent::build($container);
     }

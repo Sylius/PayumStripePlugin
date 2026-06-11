@@ -12,7 +12,8 @@
     ],
     "require": {
         "flux-se/payum-stripe-bundle": "^2.0",
-        "sylius/sylius": "^1.12"
+        "sylius/sylius": "^1.12",
+        "sylius/telemetry": "^1.0"
     },
     "require-dev": {
         "ext-json": "*",
