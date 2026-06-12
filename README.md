@@ -1,10 +1,52 @@
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE)
-[![Build Status][ico-github-actions]][link-github-actions]
+<p align="center">
+    <a href="https://sylius.com" target="_blank">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://media.sylius.com/sylius-logo-800-dark.png">
+          <source media="(prefers-color-scheme: light)" srcset="https://media.sylius.com/sylius-logo-800.png">
+          <img alt="Sylius Logo" src="https://media.sylius.com/sylius-logo-800.png">
+        </picture>
+    </a>
+</p>
 
-## Sylius Payum Stripe gateway plugin
+<h1 align="center">Payum Stripe Plugin</h1>
 
-This plugin is designed to add a new gateway to Payum to support Stripe Checkout Session.
+<p align="center">
+    <a href="https://packagist.org/packages/flux-se/sylius-payum-stripe-plugin"><img src="https://img.shields.io/packagist/v/flux-se/sylius-payum-stripe-plugin.svg?style=flat-square" alt="Latest Version on Packagist"></a>
+    <a href="https://packagist.org/packages/flux-se/sylius-payum-stripe-plugin"><img src="https://img.shields.io/packagist/dt/flux-se/sylius-payum-stripe-plugin.svg?style=flat-square" alt="Total Downloads"></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License"></a>
+    <a href="https://github.com/FLUX-SE/SyliusPayumStripePlugin/actions?query=workflow%3A%22Build%22"><img src="https://github.com/FLUX-SE/SyliusPayumStripePlugin/workflows/Build/badge.svg" alt="Build Status"></a>
+</p>
+
+<p align="center">
+    <a href="https://sylius.com/plugins/" target="_blank">
+        <img src="https://sylius.com/assets/badge-official-sylius-plugin.png" width="200" alt="Official Sylius Plugin">
+    </a>
+</p>
+
+<p align="center">
+    Integration of 
+    <a href="https://stripe.com/" target="_blank">Stripe</a> 
+    with 
+    <a href="https://sylius.com" target="_blank">Sylius</a> 
+    as a 
+    <a href="https://github.com/Payum/Payum" target="_blank">Payum</a> 
+    gateway.
+</p>
+
+<p align="center">
+This plugin exposes two gateway flavors: Stripe Checkout Session (hosted checkout, with SCA support) and Stripe JS 
+(Payment Intents with Stripe Elements), supporting one-time payments, authorized payments by placing a hold on a card, 
+and refunds.
+</p>
+
+> ⚠️ **This plugin targets Sylius 1.x.**
+> If you are looking for a Stripe integration for **Sylius 2.x**, please use the official
+> [Sylius/StripePlugin](https://github.com/Sylius/StripePlugin) instead.
+
+---
+
+## Features
+
 It supports [one time payment](https://stripe.com/docs/payments/accept-a-payment?integration=checkout)
 and authorized payment by [placing a hold on a card](https://stripe.com/docs/payments/capture-later).
 
@@ -13,7 +55,7 @@ Refund is also possible but disabled by default to avoid mistakes, use this conf
 # config/packages/flux_se_sylius_payum_stripe.yaml
 
 flux_se_sylius_payum_stripe:
-  refund_disabled: false
+    refund_disabled: false
 ```
 
 See https://stripe.com/docs/payments/checkout for more information.
@@ -29,7 +71,7 @@ composer require flux-se/sylius-payum-stripe-plugin
 
 > 💡 If the flex recipe has not been applied then follow the next step.
 
-Enable this plugin :
+Enable this plugin:
 
 ```php
 <?php
@@ -58,7 +100,9 @@ imports:
 Go to the admin area, log in, then click on the left menu item "CONFIGURATION > Payment methods".
 Create a new payment method type "Stripe Checkout Session (with SCA support)" :
 
-![Create a new payment method][docs-assets-create-payment-method]
+<p align="center">
+    <img src="docs/assets/create-payment-method.png" alt="Create a new payment method" width="400">
+</p>
 
 Then a form will be displayed, fill-in the required fields :
 
@@ -73,8 +117,6 @@ Then a form will be displayed, fill-in the required fields :
 
    ![Gateway Configuration][docs-assets-gateway-configuration]
 
-   ![Gateway Configuration][docs-assets-gateway-configuration-authorize]
-
    > _📖 NOTE1: You can add as many webhook secret keys as you need here, however generic usage need only one._
 
    > _📖 NOTE2: the screenshot contains false test credentials._
@@ -85,9 +127,24 @@ Finally, click on the "Create" button to save your new payment method.
 
 ### API keys
 
-Get your `publishable_key` and your `secret_key` on your Stripe dashboard :
+**We recommend** installing the [Sylius Stripe App][link-sylius-stripe-app] - its Settings Page exposes both keys
+this plugin needs:
+
+- the publishable key (`pk_test_…` / `pk_live_…`) for the "Publishable key" field,
+- a Restricted API Key (`rk_test_…` / `rk_live_…`) for the "Restricted API key (recommended) or secret key" field.
+
+The App ships with the minimum scopes the plugin needs, and the Restricted API Key will be the only supported option
+for the `secret_key` field in the next minor release (see [UPGRADE.md](UPGRADE.md)).
+
+Alternatively, you can pick both keys directly from the Stripe Dashboard:
 
 https://dashboard.stripe.com/test/apikeys
+
+In that case, paste a standard secret key (`sk_test_…` / `sk_live_…`) into the "Restricted API key (recommended) or secret key"
+field. Note that standard secret keys in this field are **deprecated** and will be removed in the next minor release.
+
+Restricted API keys are Stripe's officially recommended replacement for standard secret keys, see
+[Stripe's documentation on restricted API keys][link-stripe-restricted-keys] for the full rationale.
 
 ### Webhook key
 
@@ -166,9 +223,9 @@ in the Sylius admin.
 
 ### More?
 
-See documentation here : https://github.com/FLUX-SE/PayumStripe/blob/master/README.md
+See documentation [here](https://github.com/FLUX-SE/PayumStripe/blob/master/README.md).
 
-## API (Sylius Api Platform)
+## API (Sylius API Platform)
 
 ### Stripe JS gateway
 
@@ -204,6 +261,15 @@ Since this endpoint is not able to get any data from you, a service can be decor
 Decorate this service : `flux_se.sylius_payum_stripe.api.payum.after_url.stripe_checkout_session` to generate your own dedicated url.
 You will have access to the Sylius `Payment` to decide what is the url/route and the parameters of it.
 
+## Security issues
+
+If you think that you have found a security issue, please do not use the issue tracker and do not post it publicly.
+Instead, all security issues must be sent to `security@sylius.com`
+
+## Community
+
+For online communication, we invite you to chat with us and other users on [Sylius Slack](https://sylius.com/slack).
+
 ## Authors
 
 This plugin was originally created by:
@@ -225,12 +291,14 @@ Details are described in [TELEMETRY_POLICY.md](./TELEMETRY_POLICY.md).
 
 [docs-assets-create-payment-method]: docs/assets/create-payment-method.png
 [docs-assets-gateway-configuration]: docs/assets/gateway-configuration.png
-[docs-assets-gateway-configuration-authorize]: docs/assets/gateway-configuration-authorize.png
 
 [ico-version]: https://img.shields.io/packagist/v/Flux-SE/sylius-payum-stripe-plugin.svg?style=flat-square
+[ico-total-downloads]: https://img.shields.io/packagist/dt/Flux-SE/sylius-payum-stripe-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-github-actions]: https://github.com/FLUX-SE/SyliusPayumStripePlugin/workflows/Build/badge.svg
 
 [link-packagist]: https://packagist.org/packages/flux-se/sylius-payum-stripe-plugin
-[link-scrutinizer]: https://scrutinizer-ci.com/g/FLUX-SE/SyliusPayumStripePlugin/code-structure
+[link-total-downloads]: https://packagist.org/packages/flux-se/sylius-payum-stripe-plugin
 [link-github-actions]: https://github.com/FLUX-SE/SyliusPayumStripePlugin/actions?query=workflow%3A"Build"
+[link-sylius-stripe-app]: https://marketplace.stripe.com/apps/install/link/com.sylius.stripe
+[link-stripe-restricted-keys]: https://docs.stripe.com/keys/restricted-api-keys
