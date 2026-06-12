@@ -127,21 +127,16 @@ Finally, click on the "Create" button to save your new payment method.
 
 ### API keys
 
-**We recommend** installing the [Sylius Stripe App][link-sylius-stripe-app] - its Settings Page exposes both keys
+This plugin **requires a Restricted API Key** (`rk_test_…` / `rk_live_…`). Standard Stripe secret keys (`sk_*`) are 
+no longer accepted.
+
+**We recommend** installing the [Sylius Stripe App][link-sylius-stripe-app] - its Settings Page exposes both keys 
 this plugin needs:
 
 - the publishable key (`pk_test_…` / `pk_live_…`) for the "Publishable key" field,
-- a Restricted API Key (`rk_test_…` / `rk_live_…`) for the "Restricted API key (recommended) or secret key" field.
+- a Restricted API Key (`rk_test_…` / `rk_live_…`) for the "Restricted API key" field.
 
-The App ships with the minimum scopes the plugin needs, and the Restricted API Key will be the only supported option
-for the `secret_key` field in the next minor release (see [UPGRADE.md](UPGRADE.md)).
-
-Alternatively, you can pick both keys directly from the Stripe Dashboard:
-
-https://dashboard.stripe.com/test/apikeys
-
-In that case, paste a standard secret key (`sk_test_…` / `sk_live_…`) into the "Restricted API key (recommended) or secret key"
-field. Note that standard secret keys in this field are **deprecated** and will be removed in the next minor release.
+The App ships with the minimum scopes the plugin needs.
 
 Restricted API keys are Stripe's officially recommended replacement for standard secret keys, see
 [Stripe's documentation on restricted API keys][link-stripe-restricted-keys] for the full rationale.
