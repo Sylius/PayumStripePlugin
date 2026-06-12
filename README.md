@@ -218,6 +218,11 @@ Kudos to [Prometee](https://github.com/Prometee) and [all contributors](../../co
 
 This plugin is released under the [MIT License](LICENSE).
 
+## Telemetry
+
+This plugin enforces telemetry data collection when used with Sylius.
+Details are described in [TELEMETRY_POLICY.md](./TELEMETRY_POLICY.md).
+
 [docs-assets-create-payment-method]: docs/assets/create-payment-method.png
 [docs-assets-gateway-configuration]: docs/assets/gateway-configuration.png
 [docs-assets-gateway-configuration-authorize]: docs/assets/gateway-configuration-authorize.png
