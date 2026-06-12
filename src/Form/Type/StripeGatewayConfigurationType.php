@@ -11,9 +11,14 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 final class StripeGatewayConfigurationType extends AbstractType
 {
+    public const PUBLISHABLE_KEY_PATTERN = '/^pk_(test|live)_/';
+
+    public const SECRET_KEY_PATTERN = '/^rk_(test|live)_/';
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -22,6 +27,11 @@ final class StripeGatewayConfigurationType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'flux_se_sylius_payum_stripe_plugin.stripe.publishable_key',
+                        'groups' => 'sylius',
+                    ]),
+                    new Regex([
+                        'pattern' => self::PUBLISHABLE_KEY_PATTERN,
+                        'message' => 'flux_se_sylius_payum_stripe_plugin.stripe.publishable_key.invalid_format',
                         'groups' => 'sylius',
                     ]),
                 ],
@@ -35,6 +45,11 @@ final class StripeGatewayConfigurationType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'flux_se_sylius_payum_stripe_plugin.stripe.secret_key',
+                        'groups' => 'sylius',
+                    ]),
+                    new Regex([
+                        'pattern' => self::SECRET_KEY_PATTERN,
+                        'message' => 'flux_se_sylius_payum_stripe_plugin.stripe.secret_key.invalid_format',
                         'groups' => 'sylius',
                     ]),
                 ],

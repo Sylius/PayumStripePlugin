@@ -69,4 +69,9 @@ final class CreatePage extends BaseCreatePage implements CreatePageInterface
     {
         return $this->getElement('use_authorize_info')->isVisible();
     }
+
+    public function getStripeSecretKeyValidationMessage(): string
+    {
+        return $this->getValidationMessage('secret_key');
+    }
 }

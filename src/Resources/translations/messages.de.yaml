@@ -6,9 +6,11 @@ flux_se_sylius_payum_stripe_plugin:
         gateway_configuration:
             stripe:
                 publishable_key: Öffentlicher Schlüssel
-                secret_key: Geheimschlüssel
+                secret_key: Eingeschränkter API-Schlüssel
                 use_authorize: Autorisierung verwenden
                 webhook_secret_keys: Geheimschlüssel für Webhooks
+                action:
+                    replace_key_badge: Ersetzen Sie den Schlüssel durch einen eingeschränkten API-Schlüssel
                 help:
                     use_authorize: >
                         Wenn eine Zahlung autorisiert wird, garantiert die Bank den Betrag und reserviert ihn bis zu sieben Tage auf der Karte des Kunden.

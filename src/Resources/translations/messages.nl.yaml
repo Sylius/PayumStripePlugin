@@ -5,9 +5,11 @@ flux_se_sylius_payum_stripe_plugin:
         gateway_configuration:
             stripe:
                 publishable_key: Openbare sleutel
-                secret_key: Geheime sleutel
+                secret_key: Beperkte API-sleutel
                 use_authorize: Gebruik autorisatie
                 webhook_secret_keys: Webhook geheime sleutels
+                action:
+                    replace_key_badge: Vervang de sleutel door een beperkte API-sleutel
                 help:
                     use_authorize: >
                         Wanneer een betaling is geautoriseerd, garandeert de bank het bedrag en houdt het vast op de kaart van de klant gedurende maximaal zeven dagen.

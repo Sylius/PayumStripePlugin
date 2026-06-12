@@ -17,4 +17,6 @@ interface CreatePageInterface extends BaseCreatePageInterface
     public function setStripeIsAuthorized(bool $isAuthorized): void;
 
     public function isUseAuthorizeWarningMessageDisplayed(): bool;
+
+    public function getStripeSecretKeyValidationMessage(): string;
 }

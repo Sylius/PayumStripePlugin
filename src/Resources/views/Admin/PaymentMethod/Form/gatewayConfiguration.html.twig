@@ -2,6 +2,23 @@
     <div class="field"></div>
 {% endblock %}
 
+{% block _sylius_payment_method_gatewayConfig_config_secret_key_row %}
+    {% if flux_se_sylius_payum_stripe_is_legacy_secret_key(form.vars.value) %}
+        <div class="field">
+            <div style="display: flex; align-items: center; gap: .5rem; margin-bottom: .28em;">
+                {{ form_label(form, null, { label_attr: { style: 'margin: 0;' } }) }}
+                <span class="ui orange label" style="margin: 0;">
+                    {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.replace_key_badge'|trans }}
+                </span>
+            </div>
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+        </div>
+    {% else %}
+        {{ block('form_row') }}
+    {% endif %}
+{% endblock %}
+
 {% block _sylius_payment_method_gatewayConfig_config_secret_key_info_row %}
     <style>
         .flux-se-payum-stripe-recommended-cell { margin-top: -79px !important; }
@@ -21,13 +38,6 @@
                     {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.or'|trans }}
                     <a href="https://marketplace.stripe.com/apps/install/link/com.sylius.stripe" target="_blank" rel="noopener noreferrer">
                         {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.install_stripe_app'|trans }}
-                    </a>
-                </p>
-                <div class="ui divider"></div>
-                <p>{{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.info.secret_key_legacy_body'|trans }}</p>
-                <p>
-                    <a href="https://dashboard.stripe.com/apikeys" target="_blank" rel="noopener noreferrer">
-                        {{ 'flux_se_sylius_payum_stripe_plugin.form.gateway_configuration.stripe.action.secret_key'|trans }}
                     </a>
                 </p>
             </div>
