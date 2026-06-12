@@ -79,4 +79,15 @@ class ManagingPaymentMethodsContext implements Context
     {
         Assert::true($this->createPage->isUseAuthorizeWarningMessageDisplayed());
     }
+
+    /**
+     * @Then I should be notified that the stripe secret key must be a restricted API key
+     */
+    public function iShouldBeNotifiedThatTheStripeSecretKeyMustBeARestrictedApiKey(): void
+    {
+        Assert::same(
+            $this->createPage->getStripeSecretKeyValidationMessage(),
+            'The Stripe API key must be a Restricted API Key starting with rk_test_ or rk_live_.',
+        );
+    }
 }

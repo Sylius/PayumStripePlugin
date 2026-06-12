@@ -10,8 +10,8 @@ Feature: Adding a new Stripe JS payment method
 
     @ui @javascript
     Scenario: Adding a new stripe payment method using authorize
-        Given I want to create a new Stripe JS payment method
-        When I name it "Stripe JS" in "English (United States)"
+        When I want to create a new Stripe JS payment method
+        And I name it "Stripe JS" in "English (United States)"
         And I specify its code as "stripe_sca_test"
         And I configure it with test stripe gateway data "rk_test_TEST", "pk_test_TEST"
         And I add a webhook secret key "TEST"
@@ -23,8 +23,8 @@ Feature: Adding a new Stripe JS payment method
 
     @ui @javascript
     Scenario: Adding a new stripe payment method not using authorize
-        Given I want to create a new Stripe JS payment method
-        When I name it "Stripe JS" in "English (United States)"
+        When I want to create a new Stripe JS payment method
+        And I name it "Stripe JS" in "English (United States)"
         And I specify its code as "stripe_sca_test"
         And I configure it with test stripe gateway data "rk_test_TEST", "pk_test_TEST"
         And I add a webhook secret key "TEST"
@@ -33,3 +33,14 @@ Feature: Adding a new Stripe JS payment method
         Then I should be notified that it has been successfully created
         And I should see a warning message under the use authorize field
         And the payment method "Stripe JS" should appear in the registry
+
+    @ui @javascript
+    Scenario: Trying to add a new stripe payment method with a legacy secret key
+        When I want to create a new Stripe JS payment method
+        And I name it "Stripe JS" in "English (United States)"
+        And I specify its code as "stripe_sca_test"
+        And I configure it with test stripe gateway data "sk_test_TEST", "pk_test_TEST"
+        And I add a webhook secret key "TEST"
+        And I add it
+        Then I should be notified that the stripe secret key must be a restricted API key
+        And the payment method with name "Stripe JS" should not be added
