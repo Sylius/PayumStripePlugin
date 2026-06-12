@@ -3,6 +3,8 @@ flux_se_sylius_payum_stripe_plugin:
         webhook_secret_keys:
             not_blank: Please enter stripe webhook secret key.
         secret_key:
-            not_blank: Please enter stripe secret key.
+            not_blank: Please enter your Stripe Restricted API key.
+            invalid_format: 'The Stripe API key must be a Restricted API Key starting with rk_test_ or rk_live_.'
         publishable_key:
             not_blank: Please enter stripe publishable key.
+            invalid_format: 'The Stripe publishable key must start with pk_test_ or pk_live_.'

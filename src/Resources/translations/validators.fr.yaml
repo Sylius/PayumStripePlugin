@@ -3,6 +3,8 @@ flux_se_sylius_payum_stripe_plugin:
         webhook_secret_keys:
             not_blank: Veuillez saisir la clé secrète du webhook stripe.
         secret_key:
-            not_blank: Veuillez entrer votre clé secrète Stripe.
+            not_blank: Veuillez saisir votre clé d'API restreinte Stripe.
+            invalid_format: 'La clé d''API Stripe doit être une clé d''API restreinte commençant par rk_test_ ou rk_live_.'
         publishable_key:
             not_blank: Veuillez entrer votre clé publique Stripe.
+            invalid_format: 'La clé publique Stripe doit commencer par pk_test_ ou pk_live_.'

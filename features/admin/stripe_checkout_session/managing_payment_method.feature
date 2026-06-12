@@ -13,7 +13,7 @@ Feature: Adding a new  Stripe Checkout Session payment method
         Given I want to create a new Stripe Checkout Session payment method
         When I name it "Stripe Checkout Session" in "English (United States)"
         And I specify its code as "stripe_sca_test"
-        And I configure it with test stripe gateway data "TEST", "TEST"
+        And I configure it with test stripe gateway data "rk_test_TEST", "pk_test_TEST"
         And I add a webhook secret key "TEST"
         And I use authorize
         And I add it
@@ -26,7 +26,7 @@ Feature: Adding a new  Stripe Checkout Session payment method
         Given I want to create a new Stripe Checkout Session payment method
         When I name it "Stripe Checkout Session" in "English (United States)"
         And I specify its code as "stripe_sca_test"
-        And I configure it with test stripe gateway data "TEST", "TEST"
+        And I configure it with test stripe gateway data "rk_test_TEST", "pk_test_TEST"
         And I add a webhook secret key "TEST"
         And I don't use authorize
         And I add it

@@ -19,5 +19,6 @@ services:
         class: FluxSE\SyliusPayumStripePlugin\Twig\Extension\LegacyStripeKeyExtension
         arguments:
             - '@flux_se.sylius_payum_stripe.stripe.secret_key.legacy_stripe_payment_methods_provider'
+            - '@flux_se.sylius_payum_stripe.stripe.secret_key.legacy_key_detector'
         tags:
             - { name: twig.extension }

@@ -9,19 +9,18 @@ flux_se_sylius_payum_stripe_plugin:
         gateway_configuration:
             stripe:
                 publishable_key: Publishable key
-                secret_key: Restricted API key (recommended) or secret key
+                secret_key: Restricted API key
                 use_authorize: Use authorize
                 webhook_secret_keys: Webhook secret keys
                 info:
-                    secret_key_recommended_title: Recommended - Restricted API Key (rk_…)
-                    secret_key_recommended_body: Generate a Restricted API Key from your Sylius Stripe App Settings Page. The App ships with the minimum scopes the plugin needs and will be the only supported option in next version.
-                    secret_key_legacy_body: A standard Stripe secret key (sk_…) from the Stripe Dashboard is still accepted in this version.
+                    secret_key_recommended_title: Restricted API Key (rk_…)
+                    secret_key_recommended_body: Generate a Restricted API Key from your Sylius Stripe App Settings Page. The App ships with the minimum scopes the plugin needs. It is the only supported option for this field.
                     use_authorize: When a payment is authorized, the bank guarantees the amount and holds it on the customer’s card for up to seven days.
                     webhook_secret_key: Create a new webhook endpoint to generate a new webhook secret key on the Stripe dashboard and listen for several events.
                 action:
                     view_stripe_app: View the Sylius Stripe App
                     or: or
                     install_stripe_app: install it directly
-                    secret_key: Open Stripe Dashboard API keys
+                    replace_key_badge: Replace the key with a Restricted API Key
                     use_authorize: View more
                     webhook_secret_key: Create a new webhook endpoint

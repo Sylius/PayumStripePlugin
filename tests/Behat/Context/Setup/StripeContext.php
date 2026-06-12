@@ -126,7 +126,7 @@ class StripeContext implements Context
 
         $gatewayConfig->setConfig([
             'publishable_key' => 'pk_test_publishablekey',
-            'secret_key' => 'sk_test_secretkey',
+            'secret_key' => 'rk_test_secretkey',
             'webhook_secret_keys' => [
                 'whsec_test',
             ],

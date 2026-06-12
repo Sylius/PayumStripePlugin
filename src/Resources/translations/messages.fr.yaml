@@ -6,9 +6,11 @@ flux_se_sylius_payum_stripe_plugin:
         gateway_configuration:
             stripe:
                 publishable_key: Clé publique
-                secret_key: Clé secrète
+                secret_key: Clé d'API restreinte
                 use_authorize: Utiliser "authorize"
                 webhook_secret_keys: Clés secrètes du webhook
+                action:
+                    replace_key_badge: Remplacez la clé par une clé d'API restreinte
                 help:
                     use_authorize: >
                         Lorsqu'un paiement est autorisé, la banque garantit le montant et le conserve sur la carte du client jusqu'à sept jours.
